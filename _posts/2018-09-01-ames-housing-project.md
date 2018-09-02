@@ -7,7 +7,7 @@ title: Ames Housing Project
 
 So you've finally decided enough is enough. Dealing with landlords and apartments has become too much of a hassle, and its about time to start investing your money in something important. It's time to buy a house.
 
-![House Picture]({{"_/images/Ames/open_house.jpg"}}) 
+![Looks like a nice place!]({{"/assets/images/Ames/open_house.jpg"}}) 
 
 Now it's time to start investigating some listings. If you choose to look online, you may find some super helpful websites like [Zillow](https://www.zillow.com "Zillow"). One common feature is the predicted price, or as it's known in Zillow, the "zestimate."
 
@@ -39,7 +39,7 @@ Once we've obtained our data (thanks again kaggle!), the first thing to do is so
 
 One of the first things I did was to check for null values, and there were a bunch of missing pieces of information. The graph below shows the percentage of missing data from the six categories with the most null values in both the training and testing set.
 
-![Percentage of values that were null by category in train and test set]({{"/_images/Ames/null_values_barh.png"}}) 
+![Percentage of values that were null by category in train and test set]({{"/assets/images/Ames/null_values_barh.png"}}) 
 
 Because of the extreme number of missing values in the `Pool QC`, `Misc Feature`, `Alley`, and `Fence` features, I decided to drop these from both the training and testing dataset. For `Pool QC` and `Misc Feature`, the information captured in these variables could also be seen in the `Pool Area` and `Misc Feature Value` variables respectively.
 
@@ -56,9 +56,9 @@ The null values in the masonry veneer area category represented houses that did 
 
 First I looked at the garage year built and saw that null values represented houses without garages. Then I looked at the houses with garages for the distribution of years garages were built, and the relationship between garage year and sale price.
 
-![Garage Year Built Distribution]({{"/_images/Ames/garage_year_built_histogram.png"}}) 
+![The distribution of Garage Year Built is severely left skewed]({{"/assets/images/Ames/garage_year_built_histogram.png"}}) 
 
-![Garage Year Built and Sale Price Scatterplot]({{"/_images/Ames/garage_of_tomorrow.png"}}) 
+![There seems to be a positive correlation between Garage Year Built and sale price...hey what about that garage from the future?]({{"/assets/images/Ames/garage_of_tomorrow.png"}}) 
 
 So first things first, we can't have a house with a garage built 200 years from now (unless Doc and Marty have started a time traveling construction business). Since the house was remodeled in 2007 and the garage year built was 2207, I assumed this was a data entry error and replaced 2207 with 2007. 
 
@@ -115,7 +115,7 @@ This was a difficult category to deal with. Null values in this category represe
 Now that all of the data is clean, we can finally jump into selecting features. For my first model I wanted to keep things simple, and decided to start with just a few feature that had the strongest correlation with sale price. First, I had to determine which features had the strongest correlation with the sales price.
 
 
-![Strongest Correlations with Sale Price]({{"/_images/Ames/strongest_correlations.png"}}) 
+![Is anyone surprised by these features?]({{"/assets/images/Ames/strongest_correlations.png"}}) 
 
 For my first model, I decided to include the three categories with the strongest correlation with sale price, which are highlighted in green on the graph above.
 
@@ -132,7 +132,7 @@ INSERT CATWALK GIF HERE
 
 The first model was a mulitple linear regression with just those 3 variables from the graph above. Before modeling, we have to train/test split our data so that we can evaluate the effectiveness of the model against unseen data. For this model, I created a train/test split with a ratio of 80/20, so that the model was fit against 80% of the data and then evaluated against the remaining 20% it had not yet seen. After fitting the first model, I created the scatterplot below of predicted vs. actual price.
 
-![First model predicted vs. actual scatterplot]({{"/_images/Ames/model_1.png"}})
+![Who would have thought such a simple model would do this well?]({{"/assets/images/Ames/model_1.png"}})
 
 The first model had an R2 score of about 0.728, meaning the model explained just under 73% of the variance in the data. Not a bad start at all. Except, what exactly is happening with that point outlined in red? That is predicted to be waaaay too expensive. Clearly we need to consider more than just these three variables.
 
@@ -141,7 +141,7 @@ The first model had an R2 score of about 0.728, meaning the model explained just
 
 My next thought was that the neighborhood that a house is in must have a significant effect on the value of the house. This can give insight into how good the schools are, what amenities the house is near, and many other insights. For this second model I used the same three variables from the first model and added in all of the neighborhood dummy variables.
 
-![Second model predicted vs. actual scatterplot]({{"/_images/Ames/model_2.png"}})
+![Neighborhoods really improve the model!]({{"/assets/images/Ames/model_2.png"}})
 
 The R2 score increased to approximately 0.810, an increase of about 8%. We can still get to be even more accurate though.
 
@@ -152,7 +152,7 @@ At this point, my impatience has started to kick in. I know that I can slowly go
 
 Regularization adds a penalty to the loss function that is used to determine the best coefficients for the regression model. This helps to prevent overfitting of the model on the training data that would prevent the model from being able to generalize to unseen data. In this model I used Lasso regression, also known as the l1 penalty because it the more "brutal" of lasso and ridge. This model was the best yet, as seen in the scatter plot below.
 
-![Third model predicted vs. actual scatterplot]({{"/_images/Ames/model_3.png"}})
+![It just keeps getting better!]({{"/assets/images/Ames/model_3.png"}})
 
 
 Even with this model, I still felt there was room for improvement. After all, when you go to look at a house you don't consider each  piece in isolation, but rather take a more wholistic view on the house. In order to capture this in the data, I decided to investigate some interaction terms. An interaction term is created by multiplying the values of two different variables.
@@ -162,7 +162,7 @@ Even with this model, I still felt there was room for improvement. After all, wh
 
 There are multiple ways to make interaction columns, but one really convenient way is using the `PolynomialFeatures` module from the sklearn package. This module allows you to create all possible interaction features from a given dataframe for any degree you choose. I decided to limit this to only the second degree, as it gave me about 60,000 features to work with. With so many features, regularization was a must. Again I chose to use lasso regression and ended up with the following model.
 
-![Fourth model predicted vs. actual scatterplot]({{"/_images/Ames/model_4.png"}})
+![This one was worth the wait...all 45 minutes of it]({{"/assets/images/Ames/model_4.png"}})
 
 As I was running this model, I realized a couple of things. One important one is that this model took a really long time to run. Because of all of the features, it was very computationally and time intensive. While it may have been a very accurate model, it did not seem like the best use of resources in predicting housing prices. I knew that after regularzation there would be only about 1,000 features remaining to deal with. Instead of just using this model, I decided to look for better ways to create some of these more meaningful interaction terms.
 
@@ -172,9 +172,9 @@ As I was running this model, I realized a couple of things. One important one is
 Instead of using all of the second degree interaction terms, I wanted to have the opportunity to more meaningfully select interaction terms. To do so I wrote three separate custom functions. 
 1. `best_interaction_finder`: This function took in a string and generated a list of all the columns that contained that string. It then looked for which interaction feature, out of all possible interaction features, had the strongest correlation with sale price. For example, calling the function with the string 'Garage', would first create a list of all of the features that contained 'Garage'. Then it would generate all possible interaction terms between those features and determine which one was most strongly correlated with sale price. It would then add this interaction feature to the train/test split data from the original training set as well as the holdout data. An example of the interaction feature generated with the string 'Garage' is shown below.
 
-![Garage Features Original Scatterplots]({{"/_images/Ames/garage_original.png"}})
+![All four original features seem to have a moderate positive correlation with sale price]({{"/assets/images/Ames/garage_original.png"}})
 
-![Garage Interaction Term Scatterplot]({{"/_images/Ames/garage_interaction_terms.png"}})
+![The interaction term between all four has the strongest correlation with sale price]({{"/assets/images/Ames/garage_interaction_terms.png"}})
 
 
 2. `best_degree_2_interactions`: This function takes in a number, n, and determines the list of n strongest interaction features by correlation with sale price. For example, calling this function with an input of 500 would determine the 500 strongest 2nd degree interaction features by the interaction features' correlation with sale price. It would then append these 500 interaction features to all the necessary data frames.
@@ -183,7 +183,7 @@ Instead of using all of the second degree interaction terms, I wanted to have th
 
 After writing these custom functions, I tried using them by iterating through and testing out a variety of parameters. What I found was that the models I created were almost as accurate as my fourth models. As seen below, I created models with an R2 score of .
 
-![Interaction Term Based predicted vs. actual scatterplot]({{'/_images/Ames/interaction_terms_scatterplot.png'}})
+![Almost as good as the last model, in less than a third of the time!]({{'/assets/images/Ames/interaction_terms_scatterplot.png'}})
 
 Not only was this model nearly as accurate as my previous one, but is also took significantly less time to run and was much more efficient in terms of time and computational resources.  I would need to know more information to determine whether the additional accuracy provided by model four was worth the extra resources it took to create model 4, but that decision would require the input of stakeholders.
 
@@ -191,9 +191,9 @@ Not only was this model nearly as accurate as my previous one, but is also took 
 
 When making my final evaluation of my models, I used the kaggle competition scoring to determine which model best represented the data. What I found was that my fourth and fifth models were very close in performance, scoring within 1000 points of each other as determined by the root mean squared error from the holdout set provided by kaggle. Despite their similarity in performance, the models ended up being quite different. The graphs below show the largest coefficients from each model.
 
-![Largest Lasso Coefficients Model 4]({{'/_images/Ames/largest_lasso_coefs_model_4.png'}})
+![Largest Lasso Coefficients Model 4]({{'/assets/images/Ames/largest_lasso_coefs_model_4.png'}})
 
-![Largest Lasso Coefficients Model 5]({{'/_images/Ames/largest_lasso_coefs_model_5.png'}})
+![Largest Lasso Coefficients Model 5]({{'/assets/images/Ames/largest_lasso_coefs_model_5.png'}})
 
 The fourth model, which was based on all of the second degree interaction terms, primarily based its prediction on second degree interaction terms, with the top ten most important coefficients all being interaction terms. The fifth model had a diversity of term degrees for the ten largest coefficients; there were two original features, two fourth degree interaction terms, and six second degree interaction terms.
 
