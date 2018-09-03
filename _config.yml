@@ -2,7 +2,7 @@
 title:          Zeke Hochberg
 bio:            'Data Science Fellow'
 description:    "Documenting my continuing journey into data science."
-picture:        'assets/img/profile.png'
+picture:        'assets/img/profile.jpg'
 locale:         en_US
 url:            https://zekehochberg.github.io/
 
@@ -57,7 +57,7 @@ linkedin: linkedin.com/zekehochberg
 
 
 # Comments
-disqus_shortname: alperenbozkurt-net
+# disqus_shortname: alperenbozkurt-net
 
 
 # Gems
@@ -69,7 +69,7 @@ gems:
   - jekyll-paginate
 
 jekyll-mentions:
-    base_url: https://github.com
+    base_url: https://zekehochberg.github.io
 
 # Exclude list
 exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, LICENSE, Rakefile]
