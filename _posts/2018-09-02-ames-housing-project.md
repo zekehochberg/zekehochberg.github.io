@@ -64,7 +64,7 @@ First I looked at the garage year built and saw that null values represented hou
 ![The distribution of Garage Year Built is severely left skewed]({{"/assets/img/Ames/garage_year_built_histogram.png"}}) *The distribution of Garage Year Built is severely left skewed*
 
 
-![There seems to be a positive correlation between Garage Year Built and sale price...hey what about that garage from the future?]({{"/assets/img/Ames/garage_of_tomorrow.png"}}) *There seems to be a positive correlation between Garage Year Built and sale price...hey what about that garage from the future?]*
+![There seems to be a positive correlation between Garage Year Built and sale price...hey what about that garage from the future?]({{"/assets/img/Ames/garage_of_tomorrow.png"}}) *There seems to be a positive correlation between Garage Year Built and sale price...hey what about that garage from the future?*
 
 
 So first things first, we can't have a house with a garage built 200 years from now (unless Doc and Marty have started a time traveling construction business). Since the house was remodeled in 2007 and the garage year built was 2207, I assumed this was a data entry error and replaced 2207 with 2007. 
