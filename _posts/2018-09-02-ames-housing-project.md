@@ -49,7 +49,7 @@ Because of the extreme number of missing values in the `Pool QC`, `Misc Feature`
 There were other categories that also contained missing values; in total 26 different categories were missing values. Thus began the process of cleaning the remaining 77 features within the data set.
 
 ---
-#### Data Cleaning
+## Data Cleaning
 
 ![Cleaning is fun!]({{"/assets/img/Ames/cleaning-washing-cleanup-the-ilo-48889.jpeg"}})
 
@@ -113,7 +113,7 @@ Null values in this category represented houses that did not contain any masonry
 This was a difficult category to deal with. Null values in this category represented houses without garages in all but one case. For the one variable
  -->
 
-#### Feature Selection
+## Feature Selection
 
 Now that all of the data is clean, we can finally jump into selecting features. For my first model I wanted to keep things simple, and decided to start with just a few feature that had the strongest correlation with sale price. First, I had to determine which features had the strongest correlation with the sales price.
 
@@ -130,8 +130,8 @@ Now it's finally time to model!
 ![Fierce!]({{"/assets/img/Ames/pexels-photo-262039.jpeg"}})
 
 
-#### Model 1
-##### Multiple Linear Regression Using 3 Variables
+### Model 1
+#### Multiple Linear Regression Using 3 Variables
 
 The first model was a mulitple linear regression with just those 3 variables from the graph above. Before modeling, we have to train/test split our data so that we can evaluate the effectiveness of the model against unseen data. For this model, I created a train/test split with a ratio of 80/20, so that the model was fit against 80% of the data and then evaluated against the remaining 20% it had not yet seen. After fitting the first model, I created the scatterplot below of predicted vs. actual price.
 
@@ -139,8 +139,8 @@ The first model was a mulitple linear regression with just those 3 variables fro
 
 The first model had an R2 score of about 0.728, meaning the model explained just under 73% of the variance in the data. Not a bad start at all. Except, what exactly is happening with that point outlined in red? That is predicted to be waaaay too expensive. Clearly we need to consider more than just these three variables.
 
-#### Model 2
-##### Model 1 + Neighborhood dummy columns
+### Model 2
+#### Model 1 + Neighborhood dummy columns
 
 My next thought was that the neighborhood that a house is in must have a significant effect on the value of the house. This can give insight into how good the schools are, what amenities the house is near, and many other insights. For this second model I used the same three variables from the first model and added in all of the neighborhood dummy variables.
 
@@ -148,8 +148,8 @@ My next thought was that the neighborhood that a house is in must have a signifi
 
 The R2 score increased to approximately 0.810, an increase of about 8%. We can still get to be even more accurate though.
 
-#### Model 3
-##### All features With Lasso Regularization
+### Model 3
+#### All features With Lasso Regularization
 
 At this point, my impatience has started to kick in. I know that I can slowly go through all of my features and meaningfully choose those that will increase the fit of my model, but that sounds like it will take a really long time and a lot of effort. This is where I start looking for shortcuts. Model 3 used *all* 256 of the features that I created. In order to make sure that the noise within the data does not outweigh the signal, this is when I start to harness the power of regularization.
 
@@ -160,8 +160,8 @@ Regularization adds a penalty to the loss function that is used to determine the
 
 Even with this model, I still felt there was room for improvement. After all, when you go to look at a house you don't consider each  piece in isolation, but rather take a more wholistic view on the house. In order to capture this in the data, I decided to investigate some interaction terms. An interaction term is created by multiplying the values of two different variables.
 
-#### Model 4
-##### Interaction Terms Through `PolynomialFeatures`.
+### Model 4
+#### Interaction Terms Through `PolynomialFeatures`.
 
 There are multiple ways to make interaction columns, but one really convenient way is using the `PolynomialFeatures` module from the sklearn package. This module allows you to create all possible interaction features from a given dataframe for any degree you choose. I decided to limit this to only the second degree, as it gave me about 60,000 features to work with. With so many features, regularization was a must. Again I chose to use lasso regression and ended up with the following model.
 
@@ -169,8 +169,8 @@ There are multiple ways to make interaction columns, but one really convenient w
 
 As I was running this model, I realized a couple of things. One important one is that this model took a really long time to run. Because of all of the features, it was very computationally and time intensive. While it may have been a very accurate model, it did not seem like the best use of resources in predicting housing prices. I knew that after regularzation there would be only about 1,000 features remaining to deal with. Instead of just using this model, I decided to look for better ways to create some of these more meaningful interaction terms.
 
-#### Model 5
-##### Interaction Terms Through Custom Functions
+### Model 5
+#### Interaction Terms Through Custom Functions
 
 Instead of using all of the second degree interaction terms, I wanted to have the opportunity to more meaningfully select interaction terms. To do so I wrote three separate custom functions. 
 1. `best_interaction_finder`: This function took in a string and generated a list of all the columns that contained that string. It then looked for which interaction feature, out of all possible interaction features, had the strongest correlation with sale price. For example, calling the function with the string 'Garage', would first create a list of all of the features that contained 'Garage'. Then it would generate all possible interaction terms between those features and determine which one was most strongly correlated with sale price. It would then add this interaction feature to the train/test split data from the original training set as well as the holdout data. An example of the interaction feature generated with the string 'Garage' is shown below.
