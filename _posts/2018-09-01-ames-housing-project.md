@@ -7,6 +7,8 @@ project: true
 tags: [project, regression, regularization, interaction terms]
 ---
 
+![jekyll Image]({{"/assets/img/Ames/open_house.jpg"}})
+
 # Ames Housing Project
 
 So you've finally decided enough is enough. Dealing with landlords and apartments has become too much of a hassle, and its about time to start investing your money in something important. It's time to buy a house.
