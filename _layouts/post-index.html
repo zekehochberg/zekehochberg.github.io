@@ -63,12 +63,26 @@
       <div class="yazilar">
         {% for post in site.posts %}
           {% if post.project == null %}
-            <div class="yazi">
+            <!-- <div class="yazi">
               <div class="ustr">
                 <h2><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h2>
                 <div class="yazibilgisi">
-                  {{ post.date | date_to_string }} tarihinde yayınlandı.
+                  Posted: {{ post.date | date_to_string }}
                 </div>
+              </div>
+            </div> -->
+            <div class="program">
+              <div class="urunAdi">
+                <a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
+              </div>
+              <div class="urunResmi">
+                <img src="{{ post.image }}" alt="">
+              </div>
+              <div class="aciklamaUrun">
+                {{ post.excerpt }}
+              </div>
+              <div class="aciklamaUrun">
+                Posted: {{ post.date | date_to_string}}
               </div>
             </div>
           {% endif %}
