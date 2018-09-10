@@ -72,4 +72,4 @@ jekyll-mentions:
     base_url: https://zekehochberg.github.io
 
 # Exclude list
-exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, LICENSE, Rakefile]
+exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, LICENSE, Rakefile, resume/node_modules, resume/_site, resume/vendor, resume/gulpfile.js, resume/package.json]
