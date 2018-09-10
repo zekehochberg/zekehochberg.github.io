@@ -10,9 +10,19 @@
 	background-color: $color_12;
 	border-radius: 3px;
 }
+
+html {
+	min-height: 100%;
+	position: relative;
+}
+
 body {
   background: $background-color;
-  margin: 0px;
+  height: 100%;
+}
+
+.mainContainer {
+  margin: 0px 0px 140px;
 }
 
 .bisey {
@@ -31,11 +41,13 @@ body {
 }
 
 .baslik {
-  font-size: 60px;
+  font-size: 120px;
   text-align: center;
   font-family: $title-font;
+  font-weight: 700;
+  text-transform: uppercase;
   text-shadow: 1px 1px 5px #000;
-  color: #FFF;
+  color: $main-color;
   margin-top: $top-margin;
 	opacity: 0;
   animation-name: baslik;
@@ -70,14 +82,13 @@ body {
 	}
 }
 
-
 .aciklamalar {
   font-family: $title-font;
-  margin-left: 50;
   float: left;
   font-size: 20px;
-  margin-top: 25px;
-  color: $thrid-color;
+  margin-top: 50px;
+  transform: translate(40%);
+  color: $background-color;
 	opacity: 0;
 	animation-delay: 1s;
   animation-name: baslik;
@@ -168,9 +179,8 @@ body {
   margin-right: 5px;
 	margin-left: 5px;
   margin-top: 10px;
-  background-color: $main-color;
+  background-color: $background-color;
   border-radius: 3px;
-  box-shadow: 0px 0px 10px 1px rgba(82, 82, 82, 0.1);
   font-family: $main-font;
   animation-name: baslik;
 	animation-delay: 0.7s;
@@ -202,9 +212,9 @@ body {
 
 .ustr h2 {
   margin-left: 15px;
-  color: $background-color;
+  color: $main-color;
   float: left;
-  margin-top: 15px;
+  font-size: 30px;
   margin-bottom: 5px;
 }
 
@@ -218,7 +228,7 @@ body {
 
 .ustr h2 a, .yaziUzun h2 a {
   text-decoration: none;
-  color: $background-color;
+  color: $main-color;
   float: left;
   transition-property: color;
   transition-duration: 1s;
@@ -242,6 +252,7 @@ body {
 .yazilar {
   float: left;
   width: 1000px;
+  margin-bottom: 140px;
 }
 
 .programim {
@@ -251,7 +262,7 @@ body {
 
 .yazibilgisi {
   color: rgba(81, 81, 81, .4);
-  font-size: 12px;
+  font-size: 20px;
   float: right;
 	margin-right: 20px;
 	line-height: 60px;
@@ -374,7 +385,6 @@ body {
 ul.menuAna {
   font-size: 25px;
   margin-top: 15px;
-  margin-left: 20px;
   float: left;
   display: block;
   list-style: none;
@@ -432,9 +442,12 @@ ul.menuAna {
 }
 
 .footer {
-  float: left;
-  margin-top: 20px;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  position: absolute;
   width: 100%;
+  height: 140px;
   font-family: $title-font;
   background: $main-color;
   box-shadow: 0px 0px 10px 2px rgba(82, 82, 82, 1);
@@ -542,10 +555,9 @@ ul.menuAna {
 }
 
 .program {
-  background-color: $main-color;
-  width: 220px;
-  margin: 10px;
-  box-shadow: 0px 0px 10px 1px rgba(82, 82, 82, .6);
+  background-color: $background-color;
+  margin-left: 20px;
+  width: 100%;
   float: left;
   animation-name: baslik;
   animation-duration: 1.2s;
@@ -570,14 +582,13 @@ ul.menuAna {
 }
 
 .urunAdi {
-  text-align: center;
-  font-size: 20px;
-  display: block;
+  font-size: 40px;
+  display: inline-block;
   margin-top: 10px;
   margin-bottom: 10px;
   font-family: $menu-font;
 	a {
-		color: $background-color;
+		color: $main-color;
 		transition-property: color;
 		transition-duration: .5s;
 		transition-delay: 0s;
@@ -614,8 +625,10 @@ ul.menuAna {
 
 .aciklamaUrun {
   padding: 5px;
-  color: rgba(0, 0, 0, .9);
-  font-size: 13px;
+  color: $black;
+  font-size: 22px;
+  font-family: $menu-font;
+  margin-bottom: 20C;
 }
 
 .windows {
@@ -730,14 +743,13 @@ ul.menuAna {
 }
 ul.menu {
   font-size: 28px;
-  margin-top: 75px;
   margin-left: 20px;
+  transform: translate(0%, 50%);
   float: left;
   display: block;
   list-style: none;
   height: 50px;
 	opacity: 0;
-	animation-delay: 1s;
   animation: resim 2s forwards;
 
   li {
@@ -751,6 +763,7 @@ ul.menu {
       float: left;
       text-decoration: none;
       font-family: $menu-font;
+	  font-size: 50px;
 
       &:hover {
         padding: 10px;
@@ -862,6 +875,7 @@ ul.menu {
 		margin-left: auto;
 		margin-right: auto;
 		margin-top: 5px;
+
 	}
 	@keyframes orta {
 	  0% {
@@ -880,3 +894,4 @@ ul.menu {
 		margin-top: $top-margin-mobile;
 	}
 }
+

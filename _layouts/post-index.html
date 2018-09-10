@@ -42,6 +42,7 @@
         });
       });
     </script>
+	<div class="mainContainer">
     <div class="menuAc">
       <i class="fa fa-bars" aria-hidden="true"></i>
     </div>
@@ -72,23 +73,27 @@
               </div>
             </div> -->
             <div class="program">
+			<span>
               <div class="urunAdi">
                 <a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
               </div>
-              <div class="urunResmi">
+			  <div class="yazibilgisi">
+				Posted: {{ post.date | date_to_string }}
+			  </div>
+			</span>
+			  <div class="urunResmi">
                 <img src="{{ post.image }}" alt="">
               </div>
-              <div class="aciklamaUrun">
+			  <div class="aciklamaUrun">
                 {{ post.excerpt }}
               </div>
-              <div class="aciklamaUrun">
-                Posted: {{ post.date | date_to_string}}
-              </div>
-            </div>
+
+			</div>
           {% endif %}
         {% endfor %}
       </div>
     </div>
+	</div>
     {% include footer.html %}
   </body>
 </html>
