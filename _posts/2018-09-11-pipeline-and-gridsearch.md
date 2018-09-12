@@ -2,10 +2,18 @@
 layout: post
 title: "Using Pipelines and Gridsearch in Scikit-Learn"
 date: 2018-09-11
-tag: [pipelines, modeling, sklearn, scikit-learn]
-image:"/assets/img/pipelines/pipeline.png"
 excerpt: "An introduction to pipelines and gridsearching in the scikit-learn library. Explanation of pipelines and gridsearch and codealong included"
+tag:
+- classifiers
+- models
+- codealong
+- blog
+- pipeline
+- gridsearch
+image: "/assets/img/pipelines/pipeline.png"
 ---
+# Pipelines
+
 ![Jumbled mess of overlaid pipes. Also known as my attempt to be funny]({{'/assets/img/pipelines/pipeline.png'}})
 
 When modeling with data, we often have to go through several steps to transform the data before we are able to model it. How exactly we will transform the data depends on what exacly we are attempting to model. If we are working with text data, we may want to use something like `CountVectorizer` in order to get counts of each word in each document. If we are working with categorical features, we may want to create one-hot encoded features to represent each possible category. If we are working with timeseries data, we may want to convert our data to be a datetime object.
