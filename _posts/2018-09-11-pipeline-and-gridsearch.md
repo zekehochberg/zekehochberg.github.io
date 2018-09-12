@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Using Pipelines and Gridsearch in Scikit-Learn"
-date: 09/11/18
+date: 2018-09-11
 tags: [pipelines, modeling, sklearn, scikit-learn]
 image:"/assets/img/pipelines/pipeline.png"
 excerpt: "An introduction to pipelines and gridsearching in the scikit-learn library. Explanation of pipelines and gridsearch and codealong included"
