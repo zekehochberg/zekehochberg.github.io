@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Classifying Reddit Posts: r/The_Donald and r/The_Mueller"
-date: 09-28-2018
+date: 2018-09-25
 project: true
 tags: [NLP, reddit, classification]
 image: "/assets/img/reddit/snoo.png"
