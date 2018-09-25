@@ -4,8 +4,8 @@ title: "Classifying Reddit Posts: r/The_Donald and r/The_Mueller"
 date: 09/12/18
 project: true
 tags: [NLP, reddit, classification]
-image:"/assets/img/reddit/snoo.png"
-excerpt: "What features are the best predictors "
+image: "/assets/img/reddit/snoo.png"
+excerpt: "The Mueller investigation has dominated headlines over the past year. How are discussions about this investigation playing out over Reddit? Can I build a model to predict which subreddit a given post belongs to?"
 ---
 
 On May 17th, 2017 former FBI Director Robert Mueller was appointed by the Justice Department as special counsel to lead the investigation into connections between the 2016 Trump campaign and Russian officials. In the 16 months since then, this investigation has come to dominate the headlines and news cycle. [You]({{"https://www.politifact.com/truth-o-meter/article/2018/jul/16/russia-investigation-donald-trump-timeline-updated/"}}) [can]({{"https://www.nbcnews.com/politics/politics-news/papadopoulos-says-trump-campaign-officials-were-fully-aware-efforts-putin-n907891"}}) [find]({{"http://www.foxnews.com/politics/2018/07/13/muellers-russia-investigation-what-to-know.html"}}) [articles]({{"http://www.foxnews.com/opinion/2018/08/14/heres-how-trump-can-end-whole-mueller-investigation-farce.html"}}) and [videos]({{"https://www.msnbc.com/the-last-word/watch/trump-claims-i-could-run-mueller-investigation-if-i-want-1303064643512?v=railb&"}}) [about]({{"https://www.npr.org/2018/09/08/645573100/the-russia-investigations-can-there-be-a-final-answer-on-collusion"}}) it [everywhere]({{"https://www.washingtonpost.com/posteverything/wp/2017/05/19/politics-could-still-block-muellers-investigation-i-know-i-wrote-the-rules/?noredirect=on&utm_term=.b22cebc87ff5"}}).
