@@ -457,6 +457,14 @@ The cell below shows an example of searching over different possibilities to get
 
 
 ```python
+# Create the pipeline object
+# Note this is identical to the code above
+polynomial_pipeline = Pipeline([
+    ('poly', PolynomialFeatures()),
+    ('ss', StandardScaler()),
+    ('logreg', LogisticRegression())
+])
+
 # Create new parameter dictionary
 grid_params = {
     # Key = step name from pipeline + __ + hyperparameter, value = tuple of possible values

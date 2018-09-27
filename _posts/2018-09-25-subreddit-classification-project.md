@@ -35,10 +35,9 @@ I gathered my data in two ways for this project.
 	- PRAW (**P**ython **R**eddit **A**PI **W**rapper) is a wrapper for the Reddit API that can make it easier to access content through Reddit's API. While this could be used to accomplish all of the data gathering in this project, I only used PRAW to get the comments for each post.
 
 After gathering my data, I used the pandas package to load it all into a dataframe (think of an excel spreadsheet, but within python) and begin cleaning the data.
+
 ___
 ### Data Cleaning
-
-![This is going to be the cleanest data of all time]({{"/assetes/img/reddit/clean.jpg"}})*This is going to be the cleanest data of all time*
 
 After scraping from both subreddits, I had a total of 1,950 posts with the following properties:
 	- 50% from r/The_Donald and 50% from r/The_Mueller
@@ -71,10 +70,9 @@ While the accuracy results for the testing data from this first set of models we
 
 To alleviate this problem, I included all of the numeric metadata with the second model, and added in the flair text and domain variables in the third model. As the number of features grew, the models that I made became more accurate, but for the most part they were still very overfit. The progression in the logistic regression and multinomial naive bayes can be seen in the diagrams below.
 
-Logistic Regression                             |  Multinomial Naive Bayes
-:----------------------------------------------:|:-----------------------------------------------:
-![]("/assets/img/reddit/logreg_waterfall.png")  |  ![]("/assets/img/reddit/logreg_waterfall.png")
+![Logistic Regression Waterfall Chart]("/assets/img/reddit/logreg_waterfall.png")*Logistic Regression* 
 
+![Multinomial Naive Bayes Waterfall Chart]("/assets/img/reddit/logreg_waterfall.png")*Multinomial Naive Bayes*
 
 The numeric data was very helpful to the logistic regression model, but not as much for the multinomial naive bayes. Same goes for including the flair text. However in creating the third model I ran into a rather difficult challenge. How can I vectorize multiple different text columns? The CountVectorizer and TfidfVectorizer both expect to receive a list-like structure of documents to parse, while I had two separate lists of documents. I ended up manually converting each column, and then combining the resulting matrices with the required variables from the original dataframe. If at this point you're feeling like this
 
