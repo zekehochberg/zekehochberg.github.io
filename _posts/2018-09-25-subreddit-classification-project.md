@@ -8,11 +8,11 @@ image: "/assets/img/reddit/snoo.png"
 excerpt: "The Mueller investigation has dominated headlines over the past year. How are discussions about this investigation playing out over Reddit? Can I build a model to predict which subreddit a given post belongs to?"
 ---
 
-On May 17th, 2017 former FBI Director Robert Mueller was appointed by the Justice Department as special counsel to lead the investigation into connections between the 2016 Trump campaign and Russian officials. In the 16 months since then, this investigation has come to dominate the headlines and news cycle. [You]({{"https://www.politifact.com/truth-o-meter/article/2018/jul/16/russia-investigation-donald-trump-timeline-updated/"}}) [can]({{"https://www.nbcnews.com/politics/politics-news/papadopoulos-says-trump-campaign-officials-were-fully-aware-efforts-putin-n907891"}}) [find]({{"http://www.foxnews.com/politics/2018/07/13/muellers-russia-investigation-what-to-know.html"}}) [articles]({{"http://www.foxnews.com/opinion/2018/08/14/heres-how-trump-can-end-whole-mueller-investigation-farce.html"}}) and [videos]({{"https://www.msnbc.com/the-last-word/watch/trump-claims-i-could-run-mueller-investigation-if-i-want-1303064643512?v=railb&"}}) [about]({{"https://www.npr.org/2018/09/08/645573100/the-russia-investigations-can-there-be-a-final-answer-on-collusion"}}) it [everywhere]({{"https://www.washingtonpost.com/posteverything/wp/2017/05/19/politics-could-still-block-muellers-investigation-i-know-i-wrote-the-rules/?noredirect=on&utm_term=.b22cebc87ff5"}}).
-
 ![Mueller Investigation]({{"/assets/img/reddit/mueller_investigation.jpg"}}) *Credit to [CNN illustrations]({{"https://www.washingtonpost.com/posteverything/wp/2017/05/19/politics-could-still-block-muellers-investigation-i-know-i-wrote-the-rules/?noredirect=on&utm_term=.b22cebc87ff5"}}) and [Getty Images]({{"https://www.gettyimages.com/"}})*
 
-In addition to the coverage by the media, there is an incredible amount of conversation taking place on social media platforms like twitter, facebook, and reddit. Different sides of the issue have created separate online spaces as bastions of their take on the Mueller investigation. Two such spaces that are diametrically opposed are the subreddits [r/The_Donald]({{"http://www.reddit.com/r/the_donald"}}) and [r/The_Mueller]({{"http://www.reddit.com/r/the_mueller"}}). Any person reading these two subreddits could easily tell the difference between them, as the sentiment expressed in each is very different, but would a machine be able to do the same?
+On May 17th, 2017 former FBI Director Robert Mueller was appointed by the Justice Department as special counsel to lead the investigation into connections between the 2016 Trump campaign and Russian officials. In the 16 months since then, this investigation has come to dominate the headlines and news cycle. [You]({{"https://www.politifact.com/truth-o-meter/article/2018/jul/16/russia-investigation-donald-trump-timeline-updated/"}}) [can]({{"https://www.nbcnews.com/politics/politics-news/papadopoulos-says-trump-campaign-officials-were-fully-aware-efforts-putin-n907891"}}) [find]({{"http://www.foxnews.com/politics/2018/07/13/muellers-russia-investigation-what-to-know.html"}}) [articles]({{"http://www.foxnews.com/opinion/2018/08/14/heres-how-trump-can-end-whole-mueller-investigation-farce.html"}}) and [videos]({{"https://www.msnbc.com/the-last-word/watch/trump-claims-i-could-run-mueller-investigation-if-i-want-1303064643512?v=railb&"}}) [about]({{"https://www.npr.org/2018/09/08/645573100/the-russia-investigations-can-there-be-a-final-answer-on-collusion"}}) it [everywhere]({{"https://www.washingtonpost.com/posteverything/wp/2017/05/19/politics-could-still-block-muellers-investigation-i-know-i-wrote-the-rules/?noredirect=on&utm_term=.b22cebc87ff5"}}).
+
+In addition to the coverage by the media, there is an incredible amount of conversation taking place on social media platforms like Twitter, Facebook, and Reddit. Different sides of the issue have created separate online spaces as bastions of their take on the Mueller investigation. Two such spaces that are diametrically opposed are the subreddits [r/The_Donald]({{"http://www.reddit.com/r/the_donald"}}) and [r/The_Mueller]({{"http://www.reddit.com/r/the_mueller"}}). Any person reading these two subreddits could easily tell the difference between them, as the sentiment expressed in each is very different, but would a machine be able to do the same?
 
 ___
 ## Problem Statement
@@ -29,16 +29,16 @@ ___
 I gathered my data in two ways for this project.
 
 1. [Reddit API]({{"https://www.reddit.com/dev/api/"}})
-	- I used the reddit API to pull down information on approximately 2000 posts from the reddit servers. (Please note, using the reddit API requires creating an account and creating a script linked to your account [here]({{"https://www.reddit.com/prefs/apps"}}))
+	- I used the Reddit API to pull down information on approximately 2000 posts from the Reddit servers. (Please note, using the Reddit API requires creating an account and creating a script linked to your account [here]({{"https://www.reddit.com/prefs/apps"}}))
 
 2. [PRAW]({{"https://praw.readthedocs.io/en/latest/index.html"}})
-	- PRAW (__P__ython __R__eddit __A__PI __W__rapper) is a wrapper for the reddit API that can make it easier to access content through reddit's API. While this could be used to accomplish all of the data gathering in this project, I only used PRAW to get the comments for each post.
+	- PRAW (**P**ython **R**eddit **A**PI **W**rapper) is a wrapper for the Reddit API that can make it easier to access content through Reddit's API. While this could be used to accomplish all of the data gathering in this project, I only used PRAW to get the comments for each post.
 
 After gathering my data, I used the pandas package to load it all into a dataframe (think of an excel spreadsheet, but within python) and begin cleaning the data.
 ___
 ### Data Cleaning
 
-[!This is going to be the cleanest data of all time]({{"/assetes/img/reddit/black-and-white-clean-housework-launderette.jpg"}})*This is going to be the cleanest data of all time*
+![This is going to be the cleanest data of all time]({{"/assetes/img/reddit/clean.jpg"}})*This is going to be the cleanest data of all time*
 
 After scraping from both subreddits, I had a total of 1,950 posts with the following properties:
 	- 50% from r/The_Donald and 50% from r/The_Mueller
@@ -49,7 +49,7 @@ In order to simplify the data we were working with I took the following steps.
 1. Drop all features that contained only null values
 	These would obviously not be helpful in categorizing our posts, as they contained no information.
 2. Drop all features that contained the name of the subreddit except for one.
-	The reddit api will give multiple pieces of information regarding the subreddit that a post comes from, including the name of the subreddit, the number of subscribers in the subreddit, the type of subreddit, the subreddit id and so on. Since all of these features could quite easily determine where a post came from, I dropped all of them except for the name of the subreddit in order to make sure that I had no information leaking into my modeling data.
+	The Reddit api will give multiple pieces of information regarding the subreddit that a post comes from, including the name of the subreddit, the number of subscribers in the subreddit, the type of subreddit, the subreddit id and so on. Since all of these features could quite easily determine where a post came from, I dropped all of them except for the name of the subreddit in order to make sure that I had no information leaking into my modeling data.
 3. Drop all unnecessary/unrelated feature
 	While it may be important for some to know if the author of a post posted on their cakeday, it was not important to this investigation. Neither was the size of the thumbnail used, or all of the information within the preview of a post. This step involved dropping a large number of features that simply did not relate to the current investigation.
 4. Investigate remaining features
@@ -125,17 +125,17 @@ ___
 
 In addition to the findings above, I did notice some other interesting things.
 
-#### r/The_Donald Loves Exclamation Points!!!!
+### r/The_Donald Loves Exclamation Points!!!!
 
 ![Table of predictors for a post being in r/The_Donald]({{"/assets/img/reddit/trump_table.png"}})*!!!!!!!*
 
 The table above shows a number of features that all predicted a post ended up being in r/The_Donald. The first column is the individual feature, while the "Coefficient" column represents how strong of a predictor the feature was. The closer the value to -1, the stronger the feature predicted that a post belonged to r/The_Donald. Interestingly enough, r/The_Mueller did not have any punctuation based predictors, while r/The_Donald couldn't get enough of the exclamation point.
 
-#### Focus on the "Other Team"
+### Focus on the "Other Team"
 
 In both r/The_Donald and r/The_Mueller, it seemed like the discussion in the comments focused more on those who disagreed with the viewpoint of the subreddit. "Liberals", "left", and "Hillary" were all predictors for r/The_Donald, while "Trump", "republican", "republicans", and "administration" were all predictors for r/The_Mueller.
 
-#### Different Ways of Mentioning the President
+### Different Ways of Mentioning the President
 
 Both subreddits consistently referred to the president in different ways. One of the strongest predictors for r/The_Mueller was the presence of the word "Trump". However, the phrase "President Trump" was among the strongest predictors for r/The_Donald. Commenters in r/The_Mueller were also likely to use "Donnie" when referring to the president.
 ___
@@ -154,3 +154,8 @@ I used entire comment threads as a single feature for my most successful models.
 #### 3. Generalizing
 
 My most successful models obviously performed very well within these two specific subreddits. Would this model generalize to similar subreddits? Which subreddits would this model perform best on? Why might it be more successful on those specific subreddits compared to others?
+
+___
+
+For those interested in more specifics, you can find the code for this project posted [on my Github]('https://github.com/zekehochberg/reddit_classification_project')
+
