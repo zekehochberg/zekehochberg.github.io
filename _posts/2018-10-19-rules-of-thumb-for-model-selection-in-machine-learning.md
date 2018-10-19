@@ -2,11 +2,13 @@
 layout: post
 title: "Rules of Thumb for Model Selection in Machine Learning"
 date: 2018-10-19
-exerpt: "A brief set of guidelines for how to choose a model in any given situation. Image credit to [xkcd](https://xkcd.com/2048/)"
-image: "https://imgs.xkcd.com/comics/ensemble_model.png" 
+exerpt: "A brief set of guidelines for how to choose a model in any given situation."
+image: "/assets/img/blog/rules_of_thumb.png" 
 tags: [Modeling, Text]
 ---
 # How to Determine Which Model to Use in a Data Science Problem
+
+![xkcd comic strip](https://imgs.xkcd.com/comics/ensemble_model.png) <center><small><i>Image credit to <a href="https://xkcd.com/2048/">xkcd</a></i></small></center>
 
 In machine learning, there are a wide variety of models available to the modern practitioner. Everything from the simple linear regression, to extremely complex neural nets. There are models that work for regression problems, and models that work for classification problems. There are models that are extremely fast but not extremely accurate, and models that are extremely accurate, but not at all fast, and many in between. This all begs the question, how do you know which model to use in a given data science problem?
 
@@ -20,7 +22,7 @@ The implication here is that different models work better in different situation
 
 ## Understanding the Problem
 
-![]({{"/assets/img/blog/understand_the_problem.jpeg"}})
+![]({{"/assets/img/blog/understand_the_problem.jpeg"}}) <center><small><i>How do I make the lightbulb turn on?</i></small></center>
 
 When making this decision, you first must understand your problem. What is the purpose of the model you are creating? How exactly do you plan on using the output of your model? What are the most important aspects of the problem you are trying to tackle? Without the answer to these questions, it will be difficult to determine which model you should choose. 
 
@@ -47,8 +49,8 @@ All models are simplifications of reality. We take an immeasurably complex probl
 ### 1. ALWAYS START SIMPLE!
 
 | ![Smiley Face]({{"/assets/img/blog/simple_face.png"}})  | ![Detailed Portrait]({{"/assets/img/blog/complex_face.jpg"}}) |
-|:------------:|:------------------:|
-| *Start Here* | *Don't Start Here* |
+|:------------:|:----------------------:|
+| *Start Here* | *Don't Start Here!!!!* |
 
 
 The first rule of selecting a model is to start with the simplest possible model you can. If you can use a simple linear regression that will run extremely quickly to meet your needs, it is unnecessary to bring in abstract and complex models like neural nets and boosting-based models. Additionally, this simple model will give you a baseline to compare against.
@@ -57,7 +59,7 @@ Be sure to check if your model performance meets your expectations before moving
 
 ### 2. Tune Hyperparameters
 
-![Electric bass being tuned]({{"/assets/img/blog/tuning.jpg"}})<center>*You can tune a piano but you can't tuna fish...wait...wrong instrument and terrible joke. Please don't read this caption!*</center>
+![Electric bass being tuned]({{"/assets/img/blog/tuning.jpg"}}) <center><small><i>You can tune a piano but you can't tuna fish...wait...wrong instrument and terrible joke. Please don't read this caption!</i></small></center>
 
 Once you have fit your first baseline model, you now have something to compare all future models against. From here, you can try adjusting all of the hyperparameters of your model to continue improving it as much as possible. As long as you are seeing gains in your model's performance, continue tweaking the hyperparameter values! Once you stop seeing performance improvements, or are only seeing marginal improvements, try moving to the next step.
 
@@ -65,7 +67,7 @@ Again, always check to see if your model has met your needs before continuing to
 
 ### 3. Check for Overfit/Underfit
 
-![xkcd comic strip](https://imgs.xkcd.com/comics/linear_regression.png)<center>*Full credit to [xkcd](https://xkcd.com/1725/) for the comic, and also for just being awesome!*</center>
+![xkcd comic strip](https://imgs.xkcd.com/comics/linear_regression.png) <center><small><i>Full credit to <a href="https://xkcd.com/1725/">xkcd</a> for the comic, and also for just being awesome!</i></small></center>
 
 After fitting your first model, you should determine if your model is overfit or underfit. An overfit model will have high variance and low bias, and will generalize to poorly to unseen data. An underfit model will have high bias and low variance, and will perform poorly even on your training data.
 
